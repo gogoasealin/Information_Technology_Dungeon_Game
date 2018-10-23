@@ -1,1 +1,1 @@
-# nfromation_Technology_Dungeon_Game
+# Infromation_Technology_Dungeon_Game
