@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D rb2d;
     public bool canJump;
     private GameObject gameController;
-    private GameController gameControllerScript;
+    //private GameController gameControllerScript;
     public Joystick moveJoystick;
     public bool pause;
     public bool resume;
@@ -35,8 +35,8 @@ public class PlayerController : MonoBehaviour {
 
     void Awake () {
         rb2d = GetComponent<Rigidbody2D>();
-        gameController = GameObject.FindGameObjectWithTag("GameController");
-        gameControllerScript = gameController.GetComponent<GameController>();
+        //gameController = GameObject.FindGameObjectWithTag("GameController");
+        //gameControllerScript = gameController.GetComponent<GameController>();
         facingRight = true;
         anim = GetComponent<Animator>();
     }
@@ -94,61 +94,61 @@ public class PlayerController : MonoBehaviour {
         //JoystickInvisible();
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            gameControllerScript.SwitchPause();         
+           // gameControllerScript.SwitchPause();         
         }
         if (pause)
         {
-            gameControllerScript.Pause();
+            //gameControllerScript.Pause();
         }
         else if (!pause)
         {
             if (resume)
             {
-                gameControllerScript.ResumeButton();
+                //gameControllerScript.ResumeButton();
             }
         }
     }
 
     public void FixedUpdate()
     {
-        if (GetComponent<HookWithAnimation>() != null)
-        {
-            if (!GetComponent<HookWithAnimation>().hooking)
-            {
-                rb2d.velocity = new Vector2(dirX * speed, rb2d.velocity.y);
-            }
-        }
-        else
-        {
+        //if (GetComponent<HookWithAnimation>() != null)
+        //{
+        //    if (!GetComponent<HookWithAnimation>().hooking)
+        //    {
+        //        rb2d.velocity = new Vector2(dirX * speed, rb2d.velocity.y);
+        //    }
+        //}
+        //else
+        //{
             rb2d.velocity = new Vector2(dirX * speed, rb2d.velocity.y);
-        }
+        //}
 
     }
 
     public void DoJump()
     {
-        if (canClimb)
-        {
-            if (climbing)
-            {
-                StopMoving();
-                if (facingRight)
-                {
-                    rb2d.AddForce(new Vector2(-500f, 30f));// * speed);
-                }
-                else 
-                {
-                    rb2d.AddForce(new Vector2(500f, 30f));// * speed);
-                }
-                Invoke("StartMoving", 0.05f);
+        //if (canClimb)
+        //{
+        //    if (climbing)
+        //    {
+        //        StopMoving();
+        //        if (facingRight)
+        //        {
+        //            rb2d.AddForce(new Vector2(-500f, 30f));// * speed);
+        //        }
+        //        else 
+        //        {
+        //            rb2d.AddForce(new Vector2(500f, 30f));// * speed);
+        //        }
+        //        Invoke("StartMoving", 0.05f);
                 
-            }
-            else if (canJump)
-            {
-                rb2d.velocity = new Vector2(rb2d.velocity.x + jumpDistance, jumpForce);
-                canJump = false;
-            }
-        }
+        //    }
+        //    else if (canJump)
+        //    {
+        //        rb2d.velocity = new Vector2(rb2d.velocity.x + jumpDistance, jumpForce);
+        //        canJump = false;
+        //    }
+        //}
         if (canJump)
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x + jumpDistance, jumpForce);
@@ -167,8 +167,7 @@ public class PlayerController : MonoBehaviour {
         }
         if(other.gameObject.tag == "Enemy")
         {
-            Debug.Log("wtf");
-            gameControllerScript.GameOver();
+            //gameControllerScript.GameOver();
         }
     }
 
@@ -236,7 +235,7 @@ public class PlayerController : MonoBehaviour {
     void OnBecameInvisible()
     {
         gameObject.SetActive(false);
-        gameControllerScript.GameOver();
+       // gameControllerScript.GameOver();
     }
 
     private void TrowShuriken()
