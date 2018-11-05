@@ -15,8 +15,8 @@ public class GameController : MonoBehaviour
     public GameObject GameOverWindow;
     public GameObject PauseWindow;
     public GameObject backToMenuButton;
-    private GameObject gameManager;
-    private GameManager gameManagerScript;
+    //private GameObject gameManager;
+   // private GameManager gameManagerScript;
     public int count;
     public int highScore;
     public int numberOfAllGames;

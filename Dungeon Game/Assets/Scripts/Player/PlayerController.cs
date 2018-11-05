@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D rb2d;
     public bool canJump;
     private GameObject gameController;
-    //private GameController gameControllerScript;
+    private GameController gameControllerScript;
     public Joystick moveJoystick;
     public bool pause;
     public bool resume;
@@ -25,18 +25,14 @@ public class PlayerController : MonoBehaviour {
     public bool facingRight;
     public GameObject trowPosition;
     public GameObject trowPrefab;
-    public bool canUseShuriken;
-    public bool canClimb;
-    [SerializeField] private bool climbing;
-    [SerializeField]private bool stopMovement;
 
 
 
 
     void Awake () {
         rb2d = GetComponent<Rigidbody2D>();
-        //gameController = GameObject.FindGameObjectWithTag("GameController");
-        //gameControllerScript = gameController.GetComponent<GameController>();
+        gameController = GameObject.FindGameObjectWithTag("GameController");
+        gameControllerScript = gameController.GetComponent<GameController>();
         facingRight = true;
         anim = GetComponent<Animator>();
     }
@@ -69,7 +65,7 @@ public class PlayerController : MonoBehaviour {
         {
             dirX = Input.GetAxis("Horizontal");
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)) // removable
         {
             DoJump();
         }
@@ -78,77 +74,39 @@ public class PlayerController : MonoBehaviour {
         {
             DoJump();
         }
-        if (canUseShuriken)
+        if (Input.GetKeyDown(KeyCode.E))  // removable
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                TrowShuriken();
-            }
-            if (CrossPlatformInputManager.GetButtonDown("Down"))
-            {
-                TrowShuriken();
-            }
+            TrowShuriken();
+        }
+        if (CrossPlatformInputManager.GetButtonDown("Attack"))
+        {
+            TrowShuriken();
+        }
 
-        } 
-        //CheckPlayerPosition();
-        //JoystickInvisible();
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-           // gameControllerScript.SwitchPause();         
+           gameControllerScript.SwitchPause();         
         }
         if (pause)
         {
-            //gameControllerScript.Pause();
+            gameControllerScript.Pause();
         }
         else if (!pause)
         {
             if (resume)
             {
-                //gameControllerScript.ResumeButton();
+                gameControllerScript.ResumeButton();
             }
         }
     }
 
     public void FixedUpdate()
     {
-        //if (GetComponent<HookWithAnimation>() != null)
-        //{
-        //    if (!GetComponent<HookWithAnimation>().hooking)
-        //    {
-        //        rb2d.velocity = new Vector2(dirX * speed, rb2d.velocity.y);
-        //    }
-        //}
-        //else
-        //{
-            rb2d.velocity = new Vector2(dirX * speed, rb2d.velocity.y);
-        //}
-
+        rb2d.velocity = new Vector2(dirX * speed, rb2d.velocity.y);
     }
 
     public void DoJump()
     {
-        //if (canClimb)
-        //{
-        //    if (climbing)
-        //    {
-        //        StopMoving();
-        //        if (facingRight)
-        //        {
-        //            rb2d.AddForce(new Vector2(-500f, 30f));// * speed);
-        //        }
-        //        else 
-        //        {
-        //            rb2d.AddForce(new Vector2(500f, 30f));// * speed);
-        //        }
-        //        Invoke("StartMoving", 0.05f);
-                
-        //    }
-        //    else if (canJump)
-        //    {
-        //        rb2d.velocity = new Vector2(rb2d.velocity.x + jumpDistance, jumpForce);
-        //        canJump = false;
-        //    }
-        //}
         if (canJump)
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x + jumpDistance, jumpForce);
@@ -163,12 +121,11 @@ public class PlayerController : MonoBehaviour {
         }else if(other.gameObject.tag == "Climbable")
         {
             canJump = true;
-            climbing = true;
         }
-        if(other.gameObject.tag == "Enemy")
-        {
-            //gameControllerScript.GameOver();
-        }
+        //if(other.gameObject.tag == "Enemy")
+        //{
+        //    //gameControllerScript.GameOver();
+        //}
     }
 
     private void OnCollisionStay2D(Collision2D other)
@@ -179,7 +136,6 @@ public class PlayerController : MonoBehaviour {
         }else if (other.gameObject.tag == "Climbable")
         {
             canJump = true;
-            climbing = true;
         }
     }
 
@@ -192,50 +148,12 @@ public class PlayerController : MonoBehaviour {
         else if (other.gameObject.tag == "Climbable")
         {
             canJump = false;
-            climbing = false;
         }
     }
-
-    private void StopMoving()
-    {
-        stopMovement = true;
-    }
-
-    private void StartMoving()
-    {
-        stopMovement = false;
-    }
-
-    //private void CheckPlayerPosition()
-    //{
-    //    Vector3 tmpPos = Camera.main.WorldToScreenPoint(transform.position);
-    //    if (tmpPos.x < (Screen.width / 3) && tmpPos.y < (Screen.height / 3))
-    //    {
-    //        playerOnJoystickPosition = true;
-    //    }
-    //    else playerOnJoystickPosition = false;
-    //    //Debug.Log(tmpPos.x + " " + (Screen.width / 3) + " " + tmpPos.y + " " + (Screen.height / 3));
-    //}
-
-    //private void JoystickInvisible()
-    //{
-    //    if (playerOnJoystickPosition)
-    //    {
-    //        Color tempColor = new Color(1f, 1f, 1f, 0.1765f);
-    //        moveJoystick.bgImg.color = tempColor;
-    //        moveJoystick.joystickImg.color = tempColor;
-    //    }
-    //    else
-    //    {
-    //        moveJoystick.bgImg.color = new Color(255, 255, 255, 255);
-    //        moveJoystick.joystickImg.color = new Color(255, 255, 255, 255);
-    //    }
-    //}
-
     void OnBecameInvisible()
     {
         gameObject.SetActive(false);
-       // gameControllerScript.GameOver();
+        gameControllerScript.GameOver();
     }
 
     private void TrowShuriken()
