@@ -29,7 +29,7 @@ public class GoToNextLevel : MonoBehaviour {
         }
     }
 
-    private void NexTLevel()
+    public void NexTLevel()
     {
         int levelMax = 0;
         if (gameManagerScript != null)
