@@ -14,7 +14,6 @@ public class WallRemoveScript : MonoBehaviour {
             if(targets[i] != null)
             {
                 destroy = false;
-                break;
             }
         }
 	    if(destroy)
