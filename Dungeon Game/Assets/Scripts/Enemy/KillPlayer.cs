@@ -17,7 +17,6 @@ public class KillPlayer : MonoBehaviour {
     {
         if(other.gameObject.tag == "Player")
         {
-            Debug.Log("eu");
             gameControllerScript.GameOver();
         }
     }
