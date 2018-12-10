@@ -122,10 +122,10 @@ public class PlayerController : MonoBehaviour {
         {
             canJump = true;
         }
-        //if(other.gameObject.tag == "Enemy")
-        //{
-        //    //gameControllerScript.GameOver();
-        //}
+        if (other.gameObject.tag == "Enemy")
+        {
+            gameControllerScript.GameOver();
+        }
     }
 
     private void OnCollisionStay2D(Collision2D other)

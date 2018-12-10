@@ -10,7 +10,7 @@ public class Target : MonoBehaviour {
     {
         if (other.tag == "Shuriken")
         {
-            if (wall.GetComponent<WallRemove>() != null)
+            if (wall != null && wall.GetComponent<WallRemove>() != null)
             {
                 wall.GetComponent<WallRemove>().RemoveWall();
             }
