@@ -40,6 +40,7 @@ public class FalllingScript : MonoBehaviour {
     {
         rb2d.gravityScale = 1;
         GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<BoxCollider2D>().enabled = false;
     }
 
 

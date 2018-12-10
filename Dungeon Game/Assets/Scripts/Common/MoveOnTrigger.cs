@@ -40,6 +40,7 @@ public class MoveOnTrigger : MonoBehaviour {
     private void Shot()
     {
         GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<BoxCollider2D>().enabled = false;
         rb2d.AddForce(transform.right * speed);
     }
 }

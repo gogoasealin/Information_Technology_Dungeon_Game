@@ -25,7 +25,6 @@ public class SpinnerScript : MonoBehaviour {
             if (triggerNumber == 0)
             {
                 Roll();
-                Destroy(GetComponentInChildren<BoxCollider2D>());
                 triggerNumber++;
             }
             else
@@ -38,6 +37,7 @@ public class SpinnerScript : MonoBehaviour {
     public void Roll()
     {
         GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<BoxCollider2D>().enabled = false;
         rb2d.AddForce(transform.right * speed);
         rb2d.angularVelocity = 400;
     }
