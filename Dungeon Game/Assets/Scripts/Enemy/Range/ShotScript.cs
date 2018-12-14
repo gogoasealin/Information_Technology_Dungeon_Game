@@ -28,7 +28,6 @@ public class ShotScript : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("shot");
             gameManagerScript.GameOver();
         }
         if(other.gameObject.tag == "Shuriken")
