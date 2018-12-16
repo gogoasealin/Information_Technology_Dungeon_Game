@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
     public bool facingRight;
     public GameObject trowPosition;
     public GameObject trowPrefab;
+    [SerializeField] bool notUseShuriken;
 
 
 
@@ -78,7 +79,7 @@ public class PlayerController : MonoBehaviour {
         {
             TrowShuriken();
         }
-        if (CrossPlatformInputManager.GetButtonDown("Attack"))
+        if (CrossPlatformInputManager.GetButtonDown("Attack") && !notUseShuriken)
         {
             TrowShuriken();
         }

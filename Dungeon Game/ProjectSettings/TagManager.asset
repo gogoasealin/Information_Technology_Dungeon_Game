@@ -13,6 +13,8 @@ TagManager:
   - Enemy
   - Trap
   - Canvas
+  - Box
+  - Breakable
   layers:
   - Default
   - TransparentFX
