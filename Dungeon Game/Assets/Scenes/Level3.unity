@@ -236,6 +236,11 @@ Prefab:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 114178712546180728, guid: c99646cf02799824a8159fc2afb17bbb,
+        type: 2}
+      propertyPath: moveJoystick
+      value: 
+      objectReference: {fileID: 1976833343}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c99646cf02799824a8159fc2afb17bbb, type: 2}
   m_IsPrefabAsset: 0

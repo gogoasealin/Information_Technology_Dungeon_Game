@@ -553,6 +553,11 @@ Prefab:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 114178712546180728, guid: c99646cf02799824a8159fc2afb17bbb,
+        type: 2}
+      propertyPath: moveJoystick
+      value: 
+      objectReference: {fileID: 2028802999}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c99646cf02799824a8159fc2afb17bbb, type: 2}
   m_IsPrefabAsset: 0
@@ -1585,3 +1590,9 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b78e13d704e0f64bb77de0b47b652a4, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &2028802999 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114984600475650642, guid: 0b78e13d704e0f64bb77de0b47b652a4,
+    type: 2}
+  m_PrefabInternal: {fileID: 2028802998}
+  m_Script: {fileID: 11500000, guid: 25e484ff76a51d148b67d170bf98ee11, type: 3}
