@@ -54,6 +54,7 @@ public class GameController : MonoBehaviour
         death = true;
         //animatie de moarte
 
+        Time.timeScale = 0;
 
         //numberOfAllGames += 1;
         //if (highScore < count)

@@ -78,7 +78,10 @@ public class EnemyRange : MonoBehaviour {
                 yield return new WaitForSeconds(timeAfterAttack);
             }else
             {
-                StopCoroutine(ShotBullet);
+                if (gameObject != null)
+                {
+                    StopCoroutine(ShotBullet);
+                }
                 break;
             }
 
