@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformMoveMorePosition : MonoBehaviour {
+public class PlatformMoveOnTrigger : MonoBehaviour {
 
     
     public Vector3[] platformPosition;
