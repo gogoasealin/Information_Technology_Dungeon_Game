@@ -5,12 +5,10 @@ using UnityEngine;
 public class FalllingScript : MonoBehaviour {
 
     private Rigidbody2D rb2d;
-    private int triggerNumber;
 
     void Awake()
     {
         rb2d = GetComponentInParent<Rigidbody2D>();
-        triggerNumber = 0;
         GetComponentInParent<SpriteRenderer>().enabled = false;
     }
 

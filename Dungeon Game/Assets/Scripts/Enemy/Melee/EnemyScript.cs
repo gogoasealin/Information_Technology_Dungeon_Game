@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour {
 
-    private GameObject gameController;
-    private GameController gameManagerScript;
+
     private Animator anim;
     public AnimationClip animDie;
 
     private void Awake()
     {
-        gameController = GameObject.FindGameObjectWithTag("GameController");
-        gameManagerScript = gameController.GetComponent<GameController>();
         anim = GetComponent<Animator>();
     }
 

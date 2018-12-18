@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour {
 
-    private GameObject gameController;
-    private GameController gameManagerScript;
+
     private Animator anim;
     public AnimationClip animDie;
     [SerializeField] private bool playerFound;
@@ -25,8 +24,6 @@ public class EnemyMovement : MonoBehaviour {
 
     private void Start()
     {
-        gameController = GameObject.FindGameObjectWithTag("GameController");
-        gameManagerScript = gameController.GetComponent<GameController>();
         anim = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         moveSpeed = 1f;
