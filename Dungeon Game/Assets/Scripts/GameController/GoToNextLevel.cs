@@ -54,11 +54,7 @@ public class GoToNextLevel : MonoBehaviour {
                 }
             }
            
-            if (lvlnumber == 19)
-            {
-                SceneManager.LoadScene("End");
-            }
-            else SceneManager.LoadScene("level" + lvlnumber);
+            SceneManager.LoadScene("level" + lvlnumber);
         }
         else if(scene.name.Length == 7)
         {
@@ -73,13 +69,7 @@ public class GoToNextLevel : MonoBehaviour {
                     gameManagerScript.Save(levelReached);
                 }
             }
-            if (lvlnumber == 19)
-            {
-                SceneManager.LoadScene("End");
-            }
-            else SceneManager.LoadScene("level" + lvlnumber);
+            SceneManager.LoadScene("level" + lvlnumber);
         }
-
-
     }
 }

@@ -3621,7 +3621,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4585545481622550, guid: cb8010e740668944792357dd56c981f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4585545481622550, guid: cb8010e740668944792357dd56c981f9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4132,16 +4132,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114973958900203392, guid: 496d1a7babd7629429cdfd331ebbb067,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1316143364}
-    - target: {fileID: 114973958900203392, guid: 496d1a7babd7629429cdfd331ebbb067,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 496d1a7babd7629429cdfd331ebbb067, type: 3}
 --- !u!224 &1605304483 stripped
@@ -4390,7 +4380,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4760064077282152, guid: c49411e3157276d4aba88272409c2a99, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 4760064077282152, guid: c49411e3157276d4aba88272409c2a99, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4414,7 +4404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4760064077282152, guid: c49411e3157276d4aba88272409c2a99, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4760064077282152, guid: c49411e3157276d4aba88272409c2a99, type: 3}
       propertyPath: m_LocalScale.x
