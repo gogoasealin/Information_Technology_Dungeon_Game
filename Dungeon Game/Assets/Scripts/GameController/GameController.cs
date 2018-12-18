@@ -24,7 +24,8 @@ public class GameController : MonoBehaviour
     public int currentLevelReached;
     public bool death;
     //private PlayAdd playAdd;
-    public bool pause;
+    private bool pause;
+    private bool resume;
 
     void Awake()
     {
@@ -43,6 +44,25 @@ public class GameController : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SwitchPause();
+        }
+        if (pause)
+        {
+            Pause();
+        }
+        else if (!pause)
+        {
+            if (resume)
+            {
+                ResumeButton();
+            }
+        }
+    }
+
 
 
 
@@ -54,7 +74,7 @@ public class GameController : MonoBehaviour
         death = true;
         //animatie de moarte
 
-        //Time.timeScale = 0;
+        Time.timeScale = 0;
 
         //numberOfAllGames += 1;
         //if (highScore < count)
@@ -116,7 +136,7 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1;
         DisableMenuText();
         PauseWindow.SetActive(false);
-        playerControllerScript.resume = false;
+        resume = false;
     }
 
     public void PrepareGame()
@@ -130,16 +150,15 @@ public class GameController : MonoBehaviour
 
     public void SwitchPause()
     {
-        if (playerControllerScript != null && playerControllerScript.enabled)
         {
-            if (playerControllerScript.pause)
+            if (pause)
             {
-                playerControllerScript.pause = false;
-                playerControllerScript.resume = true;
+                pause = false;
+                resume = true;
             }
-            else if (!playerControllerScript.pause)
+            else if (!pause)
             {
-                playerControllerScript.pause = true;
+                pause = true;
             }
         }
     }

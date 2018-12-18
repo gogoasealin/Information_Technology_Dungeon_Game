@@ -13,8 +13,8 @@ public class PlayerController : MonoBehaviour {
     private GameObject gameController;
     private GameController gameControllerScript;
     public Joystick moveJoystick;
-    public bool pause;
-    public bool resume;
+
+
     private Quaternion movingLeft = Quaternion.Euler(0, 180, 0);
     private Quaternion movingRight = Quaternion.Euler(0, 0, 0);
     private float verticalVelocity;
@@ -84,21 +84,7 @@ public class PlayerController : MonoBehaviour {
             TrowShuriken();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-           gameControllerScript.SwitchPause();         
-        }
-        if (pause)
-        {
-            gameControllerScript.Pause();
-        }
-        else if (!pause)
-        {
-            if (resume)
-            {
-                gameControllerScript.ResumeButton();
-            }
-        }
+
     }
 
     public void FixedUpdate()

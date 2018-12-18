@@ -1558,7 +1558,6 @@ MonoBehaviour:
   levelReached: 0
   currentLevelReached: 0
   death: 0
-  pause: 0
 --- !u!4 &1316143366
 Transform:
   m_ObjectHideFlags: 0
@@ -1586,11 +1585,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4742491588460398, guid: 7743475fbe8730442b6a893dee2a8763, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.384
+      value: 12.4
       objectReference: {fileID: 0}
     - target: {fileID: 4742491588460398, guid: 7743475fbe8730442b6a893dee2a8763, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.68
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4742491588460398, guid: 7743475fbe8730442b6a893dee2a8763, type: 3}
       propertyPath: m_LocalPosition.z
