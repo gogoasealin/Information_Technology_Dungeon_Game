@@ -12,9 +12,10 @@ public class GameController : MonoBehaviour
 
     private GameObject player;
     private PlayerController playerControllerScript;
-    public GameObject GameOverWindow;
-    public GameObject PauseWindow;
+    public GameObject gameOverWindow;
+    public GameObject pauseWindow;
     public GameObject backToMenuButton;
+    public GameObject hintButton;
     //private GameObject gameManager;
    // private GameManager gameManagerScript;
     public int count;
@@ -24,8 +25,8 @@ public class GameController : MonoBehaviour
     public int currentLevelReached;
     public bool death;
     //private PlayAdd playAdd;
-    private bool pause;
-    private bool resume;
+    public bool pause;
+    public bool resume;
 
     void Awake()
     {
@@ -84,9 +85,9 @@ public class GameController : MonoBehaviour
         //}
         EnableMenuText();
         // gameManagerScript.Save();
-        if (GameOverWindow != null)
+        if (gameOverWindow != null)
         {
-            GameOverWindow.SetActive(true);
+            gameOverWindow.SetActive(true);
         }
         //if (numberOfAllGames >= 10)
         //{
@@ -102,10 +103,10 @@ public class GameController : MonoBehaviour
 
     public void EnableMenuText()
     {
-        // poate timer pe stelute? 
         if (backToMenuButton != null)
         {
             backToMenuButton.SetActive(true);
+            hintButton.SetActive(true);
         }
 
     }
@@ -113,11 +114,12 @@ public class GameController : MonoBehaviour
     public void DisableMenuText()
     {
         backToMenuButton.SetActive(false);
+        hintButton.SetActive(false);
     }
 
     public void RestartButton()
     {
-        GameOverWindow.SetActive(false);
+        gameOverWindow.SetActive(false);
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene("" + scene.name); // current scene 
 
@@ -127,7 +129,7 @@ public class GameController : MonoBehaviour
     {
         Time.timeScale = 0;
         EnableMenuText();
-        PauseWindow.SetActive(true);
+        pauseWindow.SetActive(true);
 
     }
 
@@ -135,7 +137,7 @@ public class GameController : MonoBehaviour
     {
         Time.timeScale = 1;
         DisableMenuText();
-        PauseWindow.SetActive(false);
+        pauseWindow.SetActive(false);
         resume = false;
     }
 
@@ -143,25 +145,33 @@ public class GameController : MonoBehaviour
     {
         Time.timeScale = 1;
         pause = false;
-        GameOverWindow.SetActive(false);
-        PauseWindow.SetActive(false);
+        gameOverWindow.SetActive(false);
+        pauseWindow.SetActive(false);
         backToMenuButton.SetActive(false);
+        hintButton.SetActive(false);
     }
 
     public void SwitchPause()
     {
+        if (pause)
         {
-            if (pause)
-            {
-                pause = false;
-                resume = true;
-            }
-            else if (!pause)
-            {
-                pause = true;
-            }
+            pause = false;
+            resume = true;
+        }
+        else if (!pause)
+        {
+            pause = true;
         }
     }
 
+    public void GoBackToMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 
+    public void GoToHint()
+    {
+        Debug.Log("hint");
+        //open YT;
+    }
 }

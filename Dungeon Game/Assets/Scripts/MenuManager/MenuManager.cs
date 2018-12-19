@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour {
 
-    public static MenuManager menuManager;
-
     public void GoToLevelSelection()
     {
         SceneManager.LoadScene("LevelSelection");
@@ -18,5 +16,17 @@ public class MenuManager : MonoBehaviour {
         SceneManager.LoadScene("Menu");
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GoBackToMenu();
+        }
+    }
 
 }

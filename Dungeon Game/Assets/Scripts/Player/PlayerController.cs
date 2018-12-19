@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject trowPosition;
     public GameObject trowPrefab;
     [SerializeField] bool notUseShuriken;
-
+    [SerializeField] private bool dontdieOutOfScreen;
 
 
 
@@ -40,6 +40,10 @@ public class PlayerController : MonoBehaviour {
 
 
     void Update() {
+        if (Time.timeScale <= 0)
+        {
+            return;
+        }
         dirX = CrossPlatformInputManager.GetAxis("Horizontal");
         if (moveJoystick.InputDirection != Vector3.zero)
         {
@@ -139,8 +143,11 @@ public class PlayerController : MonoBehaviour {
     }
     void OnBecameInvisible()
     {
-        gameObject.SetActive(false);
-        gameControllerScript.GameOver();
+        if (!dontdieOutOfScreen)
+        {
+            gameObject.SetActive(false);
+            gameControllerScript.GameOver();
+        }
     }
 
     private void TrowShuriken()
