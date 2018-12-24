@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossStageOne : MonoBehaviour
+public class BossStageTwo : MonoBehaviour
 {
     Transform parent;
     Animator anim;
 
     [SerializeField] private bool attack;
-    [SerializeField]private bool moving;
+    [SerializeField] private bool moving;
+    [SerializeField] Transform arrowPosition;
     private int nextPosition;
     public Vector3[] positions;
 
@@ -16,8 +17,8 @@ public class BossStageOne : MonoBehaviour
     private Vector3 playerPos;
     private bool wasIdle;
     private bool onceIdle;
-    public float timeToReachTarget;
     private bool faceRight;
+    public GameObject bossArrow;
 
     void Start()
     {
@@ -27,12 +28,12 @@ public class BossStageOne : MonoBehaviour
         onceIdle = true;
         faceRight = true;
     }
-    
+
     void Update()
     {
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
-            if(!moving)
+            if (!moving)
             {
                 nextPosition = GetNextPosition();
                 moving = true;
@@ -40,11 +41,12 @@ public class BossStageOne : MonoBehaviour
             }
             MovePosition(nextPosition);
         }
-        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("AxeAttack"))
+        else if (anim.GetCurrentAnimatorStateInfo(0).IsName("ArrowAttack"))
         {
-            if(attack && wasIdle)
+            if (attack && wasIdle)
             {
-                parent.position =  Vector3.Lerp(parent.position, playerPos, timeToReachTarget);
+                Instantiate(bossArrow, arrowPosition.position , Quaternion.identity);
+                wasIdle = false;
             }
         }
 
@@ -78,7 +80,7 @@ public class BossStageOne : MonoBehaviour
         CheckRotate(positions[nextPosition]);
         parent.position = Vector2.MoveTowards(parent.position, positions[nextPosition], 1 * Time.deltaTime);
 
-        if(parent.position == positions[nextPosition])
+        if (parent.position == positions[nextPosition])
         {
             if (onceIdle)
             {
@@ -86,26 +88,25 @@ public class BossStageOne : MonoBehaviour
                 moving = false;
                 onceIdle = false;
             }
-           
+
         }
     }
 
     public void Attack()
-    {        
+    {
         attack = true;
+    }
+
+    public void StopAttack()
+    {
+        attack = false;
+        Invoke("SetIdle", 0.5f);
     }
 
     public void SetPlayerPos()
     {
         playerPos = player.position;
         CheckRotate(playerPos);
-    }
-
-    public void StopAttack()
-    {
-        attack = false;
-        wasIdle = false;
-        Invoke("SetIdle", 1f);
     }
 
     public void SetIdle()

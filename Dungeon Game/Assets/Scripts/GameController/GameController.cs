@@ -113,10 +113,8 @@ public class GameController : MonoBehaviour
 
     public void GameOver()
     {
-        if (transform.position != null && player.transform.position != null)
-        {
-            transform.position = player.transform.position;
-        }
+
+        transform.position = player.transform.position;
         if (playerControllerScript != null) { 
             playerControllerScript.enabled = false;
         }
