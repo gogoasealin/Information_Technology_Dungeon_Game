@@ -13,11 +13,14 @@ public class PlatformMoveOnTrigger : MonoBehaviour {
     private bool go;
     private int positionNumber;
 
-    private void Awake()
+
+    private void Start()
     {
         positionNumber = 0;
         nextPosition = platformPosition[positionNumber];
     }
+
+
 
     private void Update()
     {
@@ -35,7 +38,6 @@ public class PlatformMoveOnTrigger : MonoBehaviour {
                 {
                     nextPosition = platformPosition[positionNumber];
                 }
-
             }
         }
     }

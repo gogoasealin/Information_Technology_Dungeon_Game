@@ -15,6 +15,9 @@ TagManager:
   - Canvas
   - Box
   - Breakable
+  - Boss
+  - Bomb
+  - ButtonToPress
   layers:
   - Default
   - TransparentFX
@@ -27,7 +30,7 @@ TagManager:
   - Player
   - Shuriken
   - Ground
-  - 
+  - BackGround
   - 
   - 
   - 

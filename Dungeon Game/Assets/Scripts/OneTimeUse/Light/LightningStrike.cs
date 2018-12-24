@@ -8,6 +8,12 @@ public class LightningStrike : MonoBehaviour
     private float timer;
     public float nextStrike;
 
+
+    private void Start()
+    {
+        timer = 2f;
+    }
+
     private void Update()
     {
         timer += Time.deltaTime;

@@ -7,53 +7,43 @@ public class ButtonToPressWithObjects : MonoBehaviour {
     [SerializeField]GameObject objectToMove;
     private bool goUp;
     [SerializeField] private Vector3 upPosition;
-    private GameObject Player;
     private PlayerController playerController;
     private Vector3 downPosition;
     private float speed = 1;
+    public LayerMask layerMask;
 
     private void Start()
     {
         downPosition = objectToMove.transform.position;
-        Player = GameObject.FindGameObjectWithTag("Player");
-        playerController = Player.GetComponent<PlayerController>();
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag != "Ground")
-        {
-            goUp = true;
-        }
         if(other.gameObject.tag == "Player")
         {
             playerController.canJump = true;
         }
     }
 
-    private void OnCollisionStay2D(Collision2D other)
+    private void CheckButtonPressed()
     {
-        if (other.gameObject.tag != "Ground")
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 0.1f, layerMask);
+        //for(int i = 0; i < hitColliders.Length; ++i)
+        //{
+        //    Debug.Log(hitColliders[i].name);
+        //}
+        if (hitColliders.Length >= 1)
         {
             goUp = true;
+            return;
         }
-    }
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.tag != "Ground")
-        {
-            goUp = false;
-        }
-
-        if (other.gameObject.tag == "Player")
-        {
-            playerController.canJump = false;
-        }
+        goUp = false;
     }
 
     private void Update()
     {
+        CheckButtonPressed();
         if (goUp)
         {
             objectToMove.transform.position = Vector3.MoveTowards(objectToMove.transform.position, upPosition, Time.deltaTime * speed);
@@ -61,6 +51,6 @@ public class ButtonToPressWithObjects : MonoBehaviour {
         else
         {
             objectToMove.transform.position = Vector3.MoveTowards(objectToMove.transform.position, downPosition, Time.deltaTime * speed);
-        }
+        }      
     }
 }

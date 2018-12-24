@@ -9,16 +9,19 @@ public class Boss : MonoBehaviour
     public int health;
 
     public Slider healthBar;
-    private Animator anim;
-
+    public Animator anim;
+    private GameController gameControllerScript;
 
     private void Start()
     {
-        anim = GetComponent<Animator>();   
+        anim = GetComponent<Animator>();
+        gameControllerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
     private void OnEnable()
     {
+        
+        //anim.enabled = true;
         healthBar.gameObject.SetActive(true);
     }
 
@@ -29,6 +32,10 @@ public class Boss : MonoBehaviour
             CheckBossHP();
             Destroy(other.gameObject);
         }
+        if(other.tag == "Player")
+        {
+            gameControllerScript.GameOver();
+        }
     }
 
 
@@ -36,23 +43,23 @@ public class Boss : MonoBehaviour
     {
         health -= 1;
         healthBar.value = health;
-        switch (health)
-        {
-            case 75:
-                anim.SetTrigger("stageTwo");
-                break;
-            case 50:
-                anim.SetTrigger("stageThree");
-                break;
-            case 25:
-                anim.SetTrigger("stageFour");
-                break;
-            case 0:
-                anim.SetTrigger("death");
-                break;
-            default:
-                break;
-        }
+        //switch (health)
+        //{
+        //    case 75:
+        //        anim.SetTrigger("stageTwo");
+        //        break;
+        //    case 50:
+        //        anim.SetTrigger("stageThree");
+        //        break;
+        //    case 25:
+        //        anim.SetTrigger("stageFour");
+        //        break;
+        //    case 0:
+        //        anim.SetTrigger("death");
+        //        break;
+        //    default:
+        //        break;
+        //}
     }
 
     public void TheEnd()

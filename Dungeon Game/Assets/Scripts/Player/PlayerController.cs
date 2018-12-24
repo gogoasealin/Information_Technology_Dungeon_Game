@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour {
 
 
 
-    void Awake () {
+    void Start () {
         rb2d = GetComponent<Rigidbody2D>();
         gameController = GameObject.FindGameObjectWithTag("GameController");
         gameControllerScript = gameController.GetComponent<GameController>();

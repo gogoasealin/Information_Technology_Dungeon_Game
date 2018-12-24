@@ -27,8 +27,16 @@ public class GameController : MonoBehaviour
     //private PlayAdd playAdd;
     public bool pause;
     public bool resume;
+    [SerializeField] AudioSource audioSourceDeath;
 
-    void Awake()
+   
+
+    private string[] levelsHint = new string[] {
+        "https://www.youtube.com/watch?v=-qEtZr9619U",
+        "https://www.youtube.com/watch?v=F_S8UleLwUM&ab_channel=CodrinBradea%3ASatana",
+        "https://www.youtube.com/watch?v=1-z7sIcIE1M" };
+
+    void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         //gameManager = GameObject.FindGameObjectWithTag("GameManager");
@@ -39,8 +47,7 @@ public class GameController : MonoBehaviour
         //playAdd = GetComponent<PlayAdd>();
         //playAdd.InitializeAdd();
         
-
-
+        audioSourceDeath = GetComponent<AudioSource>();
         PrepareGame();
 
     }
@@ -62,17 +69,21 @@ public class GameController : MonoBehaviour
                 ResumeButton();
             }
         }
+        if(death)
+        {
+            player.transform.localScale -= new Vector3(0.003f, 0.003f, 0);
+            if (player.transform.localScale.x <= 0.001f)
+            {
+                death = false;
+                AfterGameOver();
+            }
+        }
     }
 
 
-
-
-    public void GameOver()
+    public void AfterGameOver()
     {
-        if (playerControllerScript != null) { 
-            playerControllerScript.enabled = false;
-        }
-        death = true;
+
         //animatie de moarte
 
         Time.timeScale = 0;
@@ -98,6 +109,21 @@ public class GameController : MonoBehaviour
         //{
         //    GameOverWindow.SetActive(true);
         //}
+    }
+
+    public void GameOver()
+    {
+        if (transform.position != null && player.transform.position != null)
+        {
+            transform.position = player.transform.position;
+        }
+        if (playerControllerScript != null) { 
+            playerControllerScript.enabled = false;
+        }
+        death = true;
+        player.GetComponent<AudioSource>().Stop();
+        audioSourceDeath.Play();
+        //micsoreaza player       
 
     }
 
@@ -166,12 +192,26 @@ public class GameController : MonoBehaviour
 
     public void GoBackToMenu()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("LevelSelection");
     }
 
     public void GoToHint()
     {
-        Debug.Log("hint");
-        //open YT;
+        Scene scene = SceneManager.GetActiveScene();
+        string nextLevel = scene.name;
+        int index = 15; // fara 16
+        if (scene.name.Length == 6)
+        {
+            index = int.Parse(nextLevel.Substring(nextLevel.Length - 1));
+        }
+        else if(scene.name.Length == 7)
+        {
+            index = int.Parse(nextLevel.Substring(nextLevel.Length - 2));
+        }
+
+        if (index <= levelsHint.Length)
+        {
+            Application.OpenURL(levelsHint[index-1]); 
+        }
     }
 }

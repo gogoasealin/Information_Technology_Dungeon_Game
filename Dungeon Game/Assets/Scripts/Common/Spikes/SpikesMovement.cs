@@ -22,8 +22,6 @@ public class SpikesMovement : MonoBehaviour {
 
     }
 
-
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player")
@@ -63,7 +61,7 @@ public class SpikesMovement : MonoBehaviour {
 
             if (spikes.gameObject.transform.position.x == origin.x && spikes.gameObject.transform.position.y == origin.y)
             {
-                spikes.GetComponent<SpriteRenderer>().enabled = false;
+                spikes.SetActive(false);
                 spikeMovement = false;
             }
         }

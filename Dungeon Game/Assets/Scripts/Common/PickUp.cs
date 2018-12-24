@@ -70,13 +70,11 @@ public class PickUp : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (gameObject.transform.parent == null && other.gameObject.tag == "Player")
+        if (gameObject.transform.parent != player && other.gameObject.tag == "Player")
         {
             canCarry = false;
         }
     }
-
-
 
     private void Update()
     {

@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class Spikes : MonoBehaviour {
 
-    private GameObject gameController;
     private GameController gameControllerScript;
 
     private void Start()
     {
-        gameController = GameObject.FindGameObjectWithTag("GameController");
-        gameControllerScript = gameController.GetComponent<GameController>();
+        gameControllerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+    }
+
+    private void OnEnable()
+    {
+        GetComponent<BoxCollider2D>().enabled = true;
+    }
+
+    private void OnDisable()
+    {
+        GetComponent<BoxCollider2D>().enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

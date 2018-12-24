@@ -14,13 +14,15 @@ public class BossEnter : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, Vector2.zero, Time.deltaTime * speed);
-        if (transform.position == Vector3.zero)
+        transform.localScale += new Vector3(0.001f, 0.001f, 0);
+        if (transform.localScale.x >= 0.03f)
         {
+            transform.localScale = new Vector3(0.03f, 0.03f, 0);
             player.GetComponent<PlayerController>().enabled = true;
             GetComponent<Boss>().enabled = true;
+            //GetComponent<Animator>().enabled = true;
             GetComponent<BossEnter>().enabled = false;
-            GetComponent<Animator>().SetTrigger("stageOne");
+
         }
     }
 }

@@ -16,7 +16,7 @@ public class Hook : MonoBehaviour
     private GameObject gameController;
     private GameController gameControllerScript;
 
-    void Awake()
+    void Start()
     {
         gameController = GameObject.FindGameObjectWithTag("GameController");
         gameControllerScript = gameController.GetComponent<GameController>();

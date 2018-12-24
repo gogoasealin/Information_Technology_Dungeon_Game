@@ -9,7 +9,7 @@ public class FallingPlatform : MonoBehaviour {
     private Vector3 goPosition;
     private float timer;
 
-    private void Awake()
+    private void Start()
     {
         goPosition = gameObject.transform.position + new Vector3(0F, -100f, 0f);
     }
