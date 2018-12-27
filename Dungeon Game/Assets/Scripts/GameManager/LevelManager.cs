@@ -5,22 +5,17 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour {
 
     public int levelReached;
-    public GameObject[] levels;
-    public GameObject gameManager;
-    public GameManager gameManagerScript;
-    
+    private GameObject[] levels;
+    private GameManager gameManagerScript;
 
-    
 
-    private void Awake()
+
+
+    private void Start()
     {
-        gameManager = GameObject.FindGameObjectWithTag("GameManager");
-        if (gameManager != null)
-        {
-            gameManagerScript = gameManager.GetComponent<GameManager>();
-            gameManagerScript.Load(ref levelReached);
-        }            
-
+        gameManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        gameManagerScript.Load();
+        levelReached = gameManagerScript.levelReached;
         levels = GameObject.FindGameObjectsWithTag("Level");
         string nextLevel;
         string nextLevelName;

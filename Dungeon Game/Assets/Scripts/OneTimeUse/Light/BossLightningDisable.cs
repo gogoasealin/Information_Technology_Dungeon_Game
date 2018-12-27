@@ -2,22 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KillPlayer : MonoBehaviour {
-
+public class BossLightningDisable : MonoBehaviour
+{
     private GameController gameControllerScript;
 
-    private void Awake()
+    private void Start()
     {
         gameControllerScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
+    public void OnEnable()
+    {
+        Handheld.Vibrate();
+    }
+
+    public void Disable()
+    {
+        gameObject.SetActive(false);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.tag == "Player")
         {
-            Debug.Log("da");
             gameControllerScript.GameOver();
-
         }
     }
+
 }

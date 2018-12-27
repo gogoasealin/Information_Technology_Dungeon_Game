@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject trowPosition;
     public GameObject trowPrefab;
     [SerializeField] bool notUseShuriken;
-    [SerializeField] private bool dontdieOutOfScreen;
+    public bool dontdieOutOfScreen;
 
 
 
@@ -104,6 +104,7 @@ public class PlayerController : MonoBehaviour {
             canJump = false;
         }
     }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.tag == "Ground")
@@ -141,12 +142,15 @@ public class PlayerController : MonoBehaviour {
             canJump = false;
         }
     }
+
     void OnBecameInvisible()
     {
         if (!dontdieOutOfScreen)
         {
-            gameObject.SetActive(false);
             gameControllerScript.GameOver();
+            gameObject.SetActive(false);
+            Debug.Log("da2");
+
         }
     }
 

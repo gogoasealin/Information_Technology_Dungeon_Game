@@ -16,15 +16,15 @@ public class GameController : MonoBehaviour
     public GameObject pauseWindow;
     public GameObject backToMenuButton;
     public GameObject hintButton;
-    //private GameObject gameManager;
-   // private GameManager gameManagerScript;
-    public int count;
-    public int highScore;
-    public int numberOfAllGames;
+
+    private GameManager gameManagerScript;
+
     public int levelReached;
     public int currentLevelReached;
+    public int nextAddFromDeath;
+    public int nextAddFromLvls;
     public bool death;
-    //private PlayAdd playAdd;
+    private AdsManager adsManager;
     public bool pause;
     public bool resume;
     [SerializeField] AudioSource audioSourceDeath;
@@ -36,16 +36,20 @@ public class GameController : MonoBehaviour
         "https://www.youtube.com/watch?v=F_S8UleLwUM&ab_channel=CodrinBradea%3ASatana",
         "https://www.youtube.com/watch?v=1-z7sIcIE1M" };
 
+    private void Awake()
+    {
+        gameManagerScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        gameManagerScript.Load();
+    }
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        //gameManager = GameObject.FindGameObjectWithTag("GameManager");
-        //gameManagerScript = gameManager.GetComponent<GameManager>();
         playerControllerScript = player.GetComponent<PlayerController>();
-        //gameManagerScript.Load();
+        
 
-        //playAdd = GetComponent<PlayAdd>();
-        //playAdd.InitializeAdd();
+        adsManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<AdsManager>();
+        adsManager.InitializeAdd();
         
         audioSourceDeath = GetComponent<AudioSource>();
         PrepareGame();
@@ -54,7 +58,7 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale == 1)
         {
             SwitchPause();
         }
@@ -83,45 +87,50 @@ public class GameController : MonoBehaviour
 
     public void AfterGameOver()
     {
-
-        //animatie de moarte
-
         Time.timeScale = 0;
 
-        //numberOfAllGames += 1;
-        //if (highScore < count)
-        //{
-        //    //new record
-        //    highScore = count;
-        //}
-        EnableMenuText();
-        // gameManagerScript.Save();
-        if (gameOverWindow != null)
+        nextAddFromDeath += 1;
+
+        if(nextAddFromDeath >= 6 || nextAddFromLvls >=3)
         {
-            gameOverWindow.SetActive(true);
+            adsManager.ShowAd();      
         }
-        //if (numberOfAllGames >= 10)
-        //{
-        //    numberOfAllGames = 0;
-        //    //playAdd.ShowAd();
-        //}
-        //else
-        //{
-        //    GameOverWindow.SetActive(true);
-        //}
+        else
+        {
+            ShowDeathMenus();
+            gameManagerScript.Save();
+        }
+
+    }
+
+    public void AddShowSuccesfully()
+    {
+        ShowDeathMenus();
+        nextAddFromDeath = 0;
+        nextAddFromLvls = 0;
+        gameManagerScript.Save();
+    }
+
+    public void AddFailed()
+    {
+        ShowDeathMenus();
+    }
+
+    public void ShowDeathMenus()
+    {
+        EnableMenuText();
+        gameOverWindow.SetActive(true);
     }
 
     public void GameOver()
     {
-
         transform.position = player.transform.position;
         if (playerControllerScript != null) { 
             playerControllerScript.enabled = false;
         }
         death = true;
         player.GetComponent<AudioSource>().Stop();
-        audioSourceDeath.Play();
-        //micsoreaza player       
+        audioSourceDeath.Play();     
 
     }
 

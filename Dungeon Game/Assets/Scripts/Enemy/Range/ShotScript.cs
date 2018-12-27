@@ -6,14 +6,12 @@ public class ShotScript : MonoBehaviour {
 
     public float speed;
     private Rigidbody2D rb2d;
-    private GameObject gameController;
-    private GameController gameManagerScript;
+    private GameController gameController;
     private GameObject player;
 
     private void Start()
     {
-        gameController = GameObject.FindGameObjectWithTag("GameController");
-        gameManagerScript = gameController.GetComponent<GameController>();
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         rb2d = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         var dir = player.transform.position - transform.position;
@@ -28,7 +26,7 @@ public class ShotScript : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            gameManagerScript.GameOver();
+            gameController.GameOver();
         }
         if(other.gameObject.tag == "Shuriken")
         {

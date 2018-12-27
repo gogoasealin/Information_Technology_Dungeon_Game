@@ -24,7 +24,7 @@ public class LevelTimer : MonoBehaviour
         timer -= Time.deltaTime;
         levelTimerText.text = timer.ToString("F2");
         if (timer <= 0)
-        {
+        { 
             levelTimerText.text = "";
             gameControllerScript.GameOver();
             Destroy(gameObject.GetComponent<LevelTimer>());

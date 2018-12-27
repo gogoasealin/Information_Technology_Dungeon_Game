@@ -897,6 +897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e04085c7dd80424ab4f9224d113b1fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelMax: 0
 --- !u!1001 &542113394
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1606,6 +1607,7 @@ GameObject:
   - component: {fileID: 1316143365}
   - component: {fileID: 1316143367}
   - component: {fileID: 1316143368}
+  - component: {fileID: 1316143369}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -1629,11 +1631,10 @@ MonoBehaviour:
   pauseWindow: {fileID: 2120190623}
   backToMenuButton: {fileID: 104156138}
   hintButton: {fileID: 100163362}
-  count: 0
-  highScore: 0
-  numberOfAllGames: 0
   levelReached: 0
   currentLevelReached: 0
+  nextAddFromDeath: 0
+  nextAddFromLvls: 0
   death: 0
   pause: 0
   resume: 0
@@ -1762,6 +1763,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1316143369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316143364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e04085c7dd80424ab4f9224d113b1fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelMax: 0
 --- !u!1001 &1539444887
 PrefabInstance:
   m_ObjectHideFlags: 0

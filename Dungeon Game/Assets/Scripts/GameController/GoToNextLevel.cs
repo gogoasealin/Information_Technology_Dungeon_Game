@@ -7,8 +7,9 @@ public class GoToNextLevel : MonoBehaviour {
 
     private GameObject gameManager;
     private GameManager gameManagerScript;
-    private GameObject gameController;
-    private GameController gameControllerScript;
+    private GameController gameController;
+
+    public int levelMax;
 
     void Start()
     {
@@ -17,13 +18,13 @@ public class GoToNextLevel : MonoBehaviour {
         {
             gameManagerScript = gameManager.GetComponent<GameManager>();
         }
-        gameController = GameObject.FindGameObjectWithTag("GameController");
-        gameControllerScript = gameController.GetComponent<GameController>();
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player" && !gameControllerScript.death)
+        if (other.gameObject.tag == "Player" && !gameController.death)
         {
             NexTLevel();
         }
@@ -31,45 +32,43 @@ public class GoToNextLevel : MonoBehaviour {
 
     public void NexTLevel()
     {
-        int levelMax = 0;
+        if(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>() != null)
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().dontdieOutOfScreen = true;
+        }
+
         if (gameManagerScript != null)
         {
-            gameManagerScript.Load(ref levelMax);
-        }
-        Scene scene = SceneManager.GetActiveScene();
-        string nextLevel = scene.name;
-        string nextLevelName;
-        if (scene.name.Length == 6)
-        {
-            nextLevelName = nextLevel.Substring(nextLevel.Length - 1);
-            int lvlnumber = int.Parse(nextLevelName);
-            lvlnumber++;
-            int levelReached = lvlnumber;
-
-            if (gameManagerScript != null)
+            levelMax = gameManagerScript.levelReached;
+            Scene scene = SceneManager.GetActiveScene();
+            string nextLevel = scene.name;
+            string nextLevelName;
+            if (scene.name.Length == 6)
             {
+                nextLevelName = nextLevel.Substring(nextLevel.Length - 1);
+                int lvlnumber = int.Parse(nextLevelName);
+                lvlnumber++;
+                int levelReached = lvlnumber;
                 if (levelReached > levelMax)
                 {
-                    gameManagerScript.Save(levelReached);
+                    gameManagerScript.levelReached = levelReached;
                 }
+                SceneManager.LoadScene("level" + lvlnumber);
             }
-           
-            SceneManager.LoadScene("level" + lvlnumber);
-        }
-        else if(scene.name.Length == 7)
-        {
-            nextLevelName = nextLevel.Substring(nextLevel.Length - 2);
-            int lvlnumber = int.Parse(nextLevelName);
-            lvlnumber++;
-            int levelReached = lvlnumber;
-            if (gameManagerScript != null)
+            else if (scene.name.Length == 7)
             {
+                nextLevelName = nextLevel.Substring(nextLevel.Length - 2);
+                int lvlnumber = int.Parse(nextLevelName);
+                lvlnumber++;
+                int levelReached = lvlnumber;
                 if (levelReached > levelMax)
                 {
-                    gameManagerScript.Save(levelReached);
+                    gameManagerScript.levelReached = levelReached;
                 }
+                SceneManager.LoadScene("level" + lvlnumber);
             }
-            SceneManager.LoadScene("level" + lvlnumber);
+            gameController.nextAddFromLvls +=1;
+            gameManagerScript.Save();
         }
     }
 }

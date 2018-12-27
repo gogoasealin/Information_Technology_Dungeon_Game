@@ -15,7 +15,7 @@ public class Boss : MonoBehaviour
 
     public GameObject stageTwo;
     public GameObject stageThree;
-    public GameObject stageFour;
+
 
     private void Start()
     {
@@ -71,19 +71,24 @@ public class Boss : MonoBehaviour
                 gameObject.SetActive(false);
                 break;
             case 40:
-                stageFour.transform.position = transform.position;
-                stageFour.SetActive(true);
-                gameObject.SetActive(false);
+                GetComponent<BossStageThree>().star.SetActive(false);
+                GetComponent<BossStageThree>().enabled = false;
+                GetComponent<BossStageThree>().star.GetComponent<StarAnimation>().enabled = false;
+                GetComponent<BossStageFour>().star.GetComponent<StarAnimation2>().enabled = true;
+                GetComponent<BossStageFour>().star.SetActive(true);
+                GetComponent<BossStageFour>().enabled = true;
                 break;
             case 0:
-                Debug.Log("death");
                 healthBar.gameObject.SetActive(false);
                 gameObject.SetActive(false);
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<Death>().enabled = true;
+
                 break;
             default:
                 break;
         }
     }
+
 
 
 

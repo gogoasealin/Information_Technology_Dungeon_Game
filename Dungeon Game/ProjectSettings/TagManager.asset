@@ -18,6 +18,8 @@ TagManager:
   - Boss
   - Bomb
   - ButtonToPress
+  - Level
+  - LevelManager
   layers:
   - Default
   - TransparentFX
