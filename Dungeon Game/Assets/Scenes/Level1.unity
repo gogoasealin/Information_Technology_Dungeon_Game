@@ -119,6 +119,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1864433072}
     m_Modifications:
+    - target: {fileID: 1657782753590428, guid: bbfbf4382327c7d47809493c382b22b8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224779591759450888, guid: bbfbf4382327c7d47809493c382b22b8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -509,6 +513,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AttackButton
       objectReference: {fileID: 0}
+    - target: {fileID: 1731503557228008, guid: 796d5954a2545e84195d0f58aec3e6ad, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224228324285647830, guid: 796d5954a2545e84195d0f58aec3e6ad,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -726,6 +734,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseWindow
       objectReference: {fileID: 0}
+    - target: {fileID: 1549800937561692, guid: 12ac035916dcc9a4cb51652746eb441b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224125897622317226, guid: 12ac035916dcc9a4cb51652746eb441b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -918,6 +930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e04085c7dd80424ab4f9224d113b1fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelMax: 0
 --- !u!212 &985557416
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1056,6 +1069,10 @@ PrefabInstance:
     - target: {fileID: 1130142098204689, guid: 79088eb93855b694189552b3e5fa3548, type: 3}
       propertyPath: m_Name
       value: HintButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130142098204689, guid: 79088eb93855b694189552b3e5fa3548, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224183173231488131, guid: 79088eb93855b694189552b3e5fa3548,
         type: 3}
@@ -1433,6 +1450,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOverWindow
       objectReference: {fileID: 0}
+    - target: {fileID: 1089216506908530, guid: e73540aed8d2c834a870b679acacb0d4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224197759875563310, guid: e73540aed8d2c834a870b679acacb0d4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1689,6 +1710,10 @@ PrefabInstance:
     - target: {fileID: 1130141735260636, guid: 496d1a7babd7629429cdfd331ebbb067, type: 3}
       propertyPath: m_Name
       value: GoBackButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130141735260636, guid: 496d1a7babd7629429cdfd331ebbb067, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224183173481174350, guid: 496d1a7babd7629429cdfd331ebbb067,
         type: 3}

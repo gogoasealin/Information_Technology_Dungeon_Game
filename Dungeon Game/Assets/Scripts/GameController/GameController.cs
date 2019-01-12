@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using System;
-using UnityStandardAssets.CrossPlatformInput;
+
 
 public class GameController : MonoBehaviour
 {
@@ -32,9 +28,22 @@ public class GameController : MonoBehaviour
    
 
     private string[] levelsHint = new string[] {
-        "https://www.youtube.com/watch?v=-qEtZr9619U",
-        "https://www.youtube.com/watch?v=F_S8UleLwUM&ab_channel=CodrinBradea%3ASatana",
-        "https://www.youtube.com/watch?v=1-z7sIcIE1M" };
+        "https://www.youtube.com/watch?v=__ZUTb5_Uss&list=PLPC8ITuBW8uaicSTjhq5AlDUH4Ux1NWUl&index=1&ab_channel=DonutProductions",
+        "https://www.youtube.com/watch?v=p1K8DAFrMLA&list=PLPC8ITuBW8uaicSTjhq5AlDUH4Ux1NWUl&index=2&ab_channel=DonutProductions",
+        "https://www.youtube.com/watch?v=Fl1JPp-e81E&list=PLPC8ITuBW8uaicSTjhq5AlDUH4Ux1NWUl&index=3",
+        "https://www.youtube.com/watch?v=TSgYyzLlT8I&list=PLPC8ITuBW8uaicSTjhq5AlDUH4Ux1NWUl&index=4",
+        "https://www.youtube.com/watch?v=-hMuAZi-XRI&index=5&list=PLPC8ITuBW8uaicSTjhq5AlDUH4Ux1NWUl",
+        "https://www.youtube.com/watch?v=_3TlApjKx2g&index=6&list=PLPC8ITuBW8uaicSTjhq5AlDUH4Ux1NWUl",
+        "https://www.youtube.com/watch?v=eqHpPZtx_3s&index=7&list=PLPC8ITuBW8uaicSTjhq5AlDUH4Ux1NWUl",
+        "https://www.youtube.com/watch?v=EpVRoPr5Seg&list=PLPC8ITuBW8uaicSTjhq5AlDUH4Ux1NWUl&index=8",
+        "https://www.youtube.com/watch?v=9D16Xp6HJGQ&index=9&list=PLPC8ITuBW8uaicSTjhq5AlDUH4Ux1NWUl",
+        "https://www.youtube.com/watch?v=vDuR8udRH50&list=PLPC8ITuBW8uaicSTjhq5AlDUH4Ux1NWUl&index=10",
+        "https://www.youtube.com/watch?v=8K5N2HWqYqs&list=PLPC8ITuBW8uaicSTjhq5AlDUH4Ux1NWUl&index=11",
+        "https://www.youtube.com/watch?v=wZ7zWDvLbW8&index=12&list=PLPC8ITuBW8uaicSTjhq5AlDUH4Ux1NWUl",
+        "https://www.youtube.com/watch?v=bDab89scJ5Y&index=13&list=PLPC8ITuBW8uaicSTjhq5AlDUH4Ux1NWUl",
+        "https://www.youtube.com/watch?v=d7xySraRYC4&index=14&list=PLPC8ITuBW8uaicSTjhq5AlDUH4Ux1NWUl",
+        "https://www.youtube.com/watch?v=Q04sG7K1N2Y&index=15&list=PLPC8ITuBW8uaicSTjhq5AlDUH4Ux1NWUl"
+    };
 
     private void Awake()
     {
@@ -46,11 +55,11 @@ public class GameController : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerControllerScript = player.GetComponent<PlayerController>();
-        
+
 
         adsManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<AdsManager>();
         adsManager.InitializeAdd();
-        
+
         audioSourceDeath = GetComponent<AudioSource>();
         PrepareGame();
 
@@ -73,7 +82,7 @@ public class GameController : MonoBehaviour
                 ResumeButton();
             }
         }
-        if(death)
+        if (death)
         {
             player.transform.localScale -= new Vector3(0.003f, 0.003f, 0);
             if (player.transform.localScale.x <= 0.001f)
@@ -91,9 +100,9 @@ public class GameController : MonoBehaviour
 
         nextAddFromDeath += 1;
 
-        if(nextAddFromDeath >= 6 || nextAddFromLvls >=3)
+        if (nextAddFromDeath >= 10 || nextAddFromLvls >= 5)
         {
-            adsManager.ShowAd();      
+            adsManager.ShowAd();
         }
         else
         {
@@ -124,9 +133,13 @@ public class GameController : MonoBehaviour
 
     public void GameOver()
     {
-        transform.position = player.transform.position;
-        if (playerControllerScript != null) { 
-            playerControllerScript.enabled = false;
+        if (player.activeInHierarchy)
+        {
+            transform.position = player.transform.position;
+            if (playerControllerScript != null)
+            {
+                playerControllerScript.enabled = false;
+            }
         }
         death = true;
         player.GetComponent<AudioSource>().Stop();
@@ -206,19 +219,19 @@ public class GameController : MonoBehaviour
     {
         Scene scene = SceneManager.GetActiveScene();
         string nextLevel = scene.name;
-        int index = 15; // fara 16
+        int index = 15;
         if (scene.name.Length == 6)
         {
             index = int.Parse(nextLevel.Substring(nextLevel.Length - 1));
         }
-        else if(scene.name.Length == 7)
+        else if (scene.name.Length == 7)
         {
             index = int.Parse(nextLevel.Substring(nextLevel.Length - 2));
         }
 
         if (index <= levelsHint.Length)
         {
-            Application.OpenURL(levelsHint[index-1]); 
+            Application.OpenURL(levelsHint[index - 1]);
         }
     }
 }

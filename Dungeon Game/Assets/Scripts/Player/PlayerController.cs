@@ -70,19 +70,19 @@ public class PlayerController : MonoBehaviour {
         {
             dirX = Input.GetAxis("Horizontal");
         }
-        if (Input.GetKeyDown(KeyCode.Space)) // removable
-        {
-            DoJump();
-        }
+        //if (Input.GetKeyDown(KeyCode.Space)) // removable
+        //{
+        //    DoJump();
+        //}
 
         if (CrossPlatformInputManager.GetButtonDown("Jump"))
         {
             DoJump();
         }
-        if (Input.GetKeyDown(KeyCode.E))  // removable
-        {
-            TrowShuriken();
-        }
+        //if (Input.GetKeyDown(KeyCode.E))  // removable
+        //{
+        //    TrowShuriken();
+        //}
         if (CrossPlatformInputManager.GetButtonDown("Attack") && !notUseShuriken)
         {
             TrowShuriken();
@@ -149,8 +149,6 @@ public class PlayerController : MonoBehaviour {
         {
             gameControllerScript.GameOver();
             gameObject.SetActive(false);
-            Debug.Log("da2");
-
         }
     }
 

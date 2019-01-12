@@ -27,6 +27,10 @@ public class AdsManager : MonoBehaviour
         {
             Advertisement.Show("video", new ShowOptions() { resultCallback = HandleAdResult });
         }
+        else
+        {
+            gameControllerScript.AddFailed();
+        }
     }
 
     private void HandleAdResult(ShowResult result)
@@ -43,7 +47,7 @@ public class AdsManager : MonoBehaviour
                 gameControllerScript.AddFailed();
                 break;
             default:
-                Debug.Log("something when wrong");
+                gameControllerScript.AddFailed();
                 return;
         }
 
